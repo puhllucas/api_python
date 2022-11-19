@@ -23,8 +23,15 @@ books = [
 
 
 
-@app.route('/livros')
+@app.route('/livros', methods=['GET'])
 def read_all() -> jsonify:
+    return jsonify(books)
+
+@app.route('/livros/search/<int:id>', methods=['GET'])
+def read_id(id) -> jsonify:
+    for items in books:
+        if items.get('id') == id:
+            return jsonify(items)    
     return jsonify(books)
 
 
