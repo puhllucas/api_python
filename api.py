@@ -35,5 +35,12 @@ def read_id(id) -> jsonify:
     return jsonify(books)
 
 
+@app.route('/livros/delete/<int:id>', methods=['POST', 'GET'])
+def delete_id(id) -> None:
+    for index, item in enumerate(books):
+        if item.get('id') == id:
+            del books[index]
+    return jsonify(books)
+
 
 app.run(port=5000, host='localhost', debug=True)
