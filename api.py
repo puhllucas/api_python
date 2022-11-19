@@ -43,4 +43,15 @@ def delete_id(id) -> None:
     return jsonify(books)
 
 
+@app.route('/livros/edit/<int:id>', methods=['PUT', 'POST', 'GET'])
+def update(id) -> jsonify:
+    #book_modified = request.get_json()
+    new_data = {'id': 3, 'title': 'None', 'Author': 'Hábitos Atômicos'}
+    for index, item in enumerate(books):
+        if item.get('id') == id:
+            item.update(new_data)
+    return jsonify(books)
+
+
+
 app.run(port=5000, host='localhost', debug=True)
